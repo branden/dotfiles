@@ -1,0 +1,10 @@
+[core]
+	autocrlf = input
+[user]
+	name = Branden Rolston
+	email = brolston@gmail.com
+[github]
+	user = branden
+[alias]
+	ci = commit
+	co = checkout
