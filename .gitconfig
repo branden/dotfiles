@@ -8,3 +8,5 @@
 [alias]
 	ci = commit
 	co = checkout
+[branch]
+    autosetuprebase = always
