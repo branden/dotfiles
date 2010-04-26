@@ -44,8 +44,20 @@ autocmd BufEnter COMMIT_EDITMSG set textwidth=0
 ab teh the
 ab bmr Branden Rolston
 
-:nmap <Leader>s :source ~/.vimrc
-:nmap <Leader>v :e ~/.vimrc
+:nmap <Leader>  s :source ~/.vimrc
+:nmap <Leader>  v :e ~/.vimrc
+
+inoremap ;; <ESC>
+
+" Stop using the arrow keys 
+noremap <Left>  <NOP>
+noremap <Right> <NOP>
+noremap <Up>    <NOP>
+noremap <Down>  <NOP>
+inoremap <Left>  <NOP>
+inoremap <Right> <NOP>
+inoremap <Up>    <NOP>
+inoremap <Down>  <NOP>
 
 " MACROS
 " starts a Python program
