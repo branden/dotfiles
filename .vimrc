@@ -44,8 +44,8 @@ autocmd BufEnter COMMIT_EDITMSG set textwidth=0
 ab teh the
 ab bmr Branden Rolston
 
-:nmap <Leader>  s :source ~/.vimrc
-:nmap <Leader>  v :e ~/.vimrc
+:nmap <Leader>s :source ~/.vimrc<CR>
+:nmap <Leader>v :e ~/.vimrc<CR>
 
 inoremap ;; <ESC>
 
