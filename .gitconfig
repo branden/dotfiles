@@ -1,5 +1,6 @@
 [core]
 	autocrlf = input
+	pager = /usr/share/vim/vim73/macros/less.sh
 [user]
 	name = Branden Rolston
 	email = brolston@gmail.com
@@ -9,4 +10,4 @@
 	ci = commit
 	co = checkout
 [branch]
-    autosetuprebase = always
+	autosetuprebase = always
