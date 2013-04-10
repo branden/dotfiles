@@ -53,6 +53,7 @@ autocmd FileType python set textwidth=79 tabstop=4 softtabstop=4 shiftwidth=4 ex
 autocmd BufEnter *.php set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 autocmd BufEnter *.xml,*.xsd,*.xsl set fo-=t expandtab tabstop=2 softtabstop=2 shiftwidth=2
 autocmd BufNewFile,BufRead *.md,*.mkd,*.markdown set filetype=mkd wrap linebreak
+autocmd FIleType html set tabstop=4 shiftwidth=4 noexpandtab
 
 " turn on comment continuation for C style comments
 set fo+=r                    " Add new comment line automagically
