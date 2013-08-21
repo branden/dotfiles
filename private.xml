@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<!-- KeyRemap4MacBook custom options -->
+
+<root>
+  <appdef>
+    <appname>MACVIM</appname>
+    <equal>org.vim.MacVim</equal>
+  </appdef>
+
+  <item>
+    <name>Command_L to Control_L (except Terminal, Virtual Machine, RDC, MacVim)</name>
+    <identifier>private.commandL2controlL_extermvmvim</identifier>
+    <not>TERMINAL, VIRTUALMACHINE, REMOTEDESKTOPCONNECTION, MACVIM</not>
+    <autogen>__KeyToKey__ KeyCode::COMMAND_L, KeyCode::CONTROL_L</autogen>
+  </item>
+  <item>
+    <name>Control_L to Command_L (except Terminal, Virtual Machine, RDC, MacVim)</name>
+    <identifier>private.controlL2commandL_extermvmvim</identifier>
+    <not>TERMINAL, VIRTUALMACHINE, REMOTEDESKTOPCONNECTION, MACVIM</not>
+    <autogen>__KeyToKey__ KeyCode::CONTROL_L, KeyCode::COMMAND_L</autogen>
+  </item>
+</root>
