@@ -1,6 +1,7 @@
 [core]
 	autocrlf = input
 	pager = vimpager
+	excludesfile = ~/.gitignore
 [user]
 	name = Branden Rolston
 	email = brolston@gmail.com
