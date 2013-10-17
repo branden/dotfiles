@@ -41,7 +41,8 @@ set guioptions+=c                   " Use console instead of popup dialogs
 set guioptions-=T                   " Turn off toolbar
 set guioptions-=r                   " Turn off right scrollbar
 "set guifont=Inconsolata:h13        " set font on Windows
-set guifont=Inconsolata\ Medium\ 11 " Set font on Gnome
+"set guifont=Inconsolata\ Medium\ 11 " Set font on Gnome
+set guifont=Inconsolata:h13         " Set font on OSX
 
 " xml options
 let xml_use_xhtml = 1

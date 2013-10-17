@@ -1,6 +1,6 @@
 [core]
 	autocrlf = input
-	pager = /usr/share/vim/vim73/macros/less.sh
+	pager = vimpager
 [user]
 	name = Branden Rolston
 	email = brolston@gmail.com
