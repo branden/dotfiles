@@ -1,31 +1,33 @@
 set tabpagemax=50 " max number of tabs to open with -p
+set autoread      " auto reload files that have been modified outside vim
 
 " Filetypes
-autocmd FileType python set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-autocmd FileType javascript set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+autocmd FileType python set tabstop=4 softtabstop=4 shiftwidth=4 colorcolumn=80 expandtab shiftround
+autocmd FileType javascript set tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$']
-"autocmd VimEnter /Users/branden/Code/*.py NERDTree
-"autocmd BufEnter /Users/branden/Code/*.py NERDTreeMirror
 
-set clipboard=unnamed
+" Search/substitute
 
-" search/substitute
 set ignorecase
 set smartcase
-set gdefault        " Assume '/g' at the end of substitude commands
+set gdefault        " Assume '/g' at the end of substitute commands
 set hlsearch
-set incsearch       " Incremental search
 set showmatch       " Briefly show the matching bracket when one is typed
 
-" appearance
-set nocursorline                    " Don't highlight current line
-set number!                         " Turn off line numbering
+" Searches use standard regexes
+nnoremap / /\v
+vnoremap / /\v
+
+" Appearance
+
+set cursorline                      " Highlight current line
+set nonumber                        " Turn off line numbering
 set guioptions+=c                   " Use console instead of popup dialogs
 set guioptions-=T                   " Turn off toolbar
 set guioptions-=r                   " Turn off right scrollbar
-set guifont=Inconsolata:h13        " set font on Windows and OSX
+set guifont=Inconsolata:h13         " set font on Windows and OSX
 "set guifont=Inconsolata\ Medium\ 11 " Set font on Gnome
 
 if (&t_Co == 256 || has('gui_running'))
@@ -36,25 +38,19 @@ if (&t_Co == 256 || has('gui_running'))
   endif
 endif
 
+" Macros
+
 " shortcuts
 inoremap jj <ESC>
-:nmap <Leader>s :source ~/.vimrc.local<CR>
-:nmap <Leader>v :e ~/.vimrc.local<CR>
 
-" Clear out a search with <leader><space>
-nnoremap <Leader><space> :let @/=''<cr>
+" Clear out a search
+nnoremap <Leader>s :let @/=''<cr>
 
 " Arrow keys scroll buffer
 noremap <Left>  zh
 noremap <Right> zl
 noremap <Up>    
 noremap <Down>  
-
-" Searches use standard regexes
-nnoremap / /\v
-vnoremap / /\v
-
-" Macros
 
 " Starts a Python program
 map  i#!/usr/bin/env python<CR><CR>import sys<CR>import os<CR><CR>def main(argv):<CR>pass<CR><ESC>oif __name__ == '__main__':<CR>try:<CR>main(sys.argv)<CR><BS>except KeyboardInterrupt:<CR>pass<ESC>
