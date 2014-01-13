@@ -12,3 +12,5 @@
 	co = checkout
 [branch]
 	autosetuprebase = always
+[push]
+	default = simple
