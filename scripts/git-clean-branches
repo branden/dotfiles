@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Delete merged branches in the working directory's git repo.
+
+# Usage: git-clean-branches [master-branch]
+#
+# master-branch: The name of the master branch. Defaults to master.
+
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+
+function upstream_remote() {
+  branch=$1
+  upstream_branch=$(git for-each-ref --format='%(upstream:short)' refs/heads/$branch)
+  IFS='/ ' read -r -a upstream <<< $upstream_branch
+  if [ ${#upstream[@]} -eq 2 ]; then
+    echo ${upstream[0]}
+  fi
+}
+
+
+master_branch=${1:-master}
+
+git checkout $master_branch >/dev/null 2>&1
+git pull
+# Check out the branch we started on when the script exits.
+# If that branch was deleted by this script, this will leave us on $master_branch.
+function cleanup() {
+  git checkout - >/dev/null 2>&1
+}
+trap cleanup EXIT
+
+# Get an array of local branches that are merged into $master_branch (excluding $master_branch itself).
+read -r -a merged_branches <<< $(git branch --merged $master_branch | grep -vx "\* $master_branch")
+if [[ ${merged_branches:-""} == "" ]]; then
+  exit 0
+fi
+
+for branch in ${merged_branches[@]}; do
+  # If the local branch is tracking a remote branch, delete the remote branch.
+  upstream=$(upstream_remote $branch)
+  if [[ ! -z "$upstream" ]]; then
+    git push --delete $upstream $branch
+  fi
+  # Delete the local branch.
+  git branch -d $branch
+done
