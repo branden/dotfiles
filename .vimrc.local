@@ -1,12 +1,37 @@
 set tabpagemax=50 " max number of tabs to open with -p
 set autoread      " auto reload files that have been modified outside vim
+set nolinebreak
+set nospell
+
+" Open new split windows to the right and bottom
+set splitbelow
+set splitright
+
+set colorcolumn=0
+
+set tabstop=4
 
 " Filetypes
-autocmd FileType python set tabstop=4 softtabstop=4 shiftwidth=4 colorcolumn=80 expandtab shiftround
-autocmd FileType javascript set tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround
+" Make sure colorcolumn doesn't stick
+autocmd FileType * set colorcolumn=0
+autocmd FileType python set encoding=utf-8 tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround nolinebreak colorcolumn=121
+autocmd FileType javascript set tabstop=4 softtabstop=4 shiftwidth=4 expandtab shiftround nolinebreak
+autocmd FileType go set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab nolinebreak listchars=tab:\ \ ,trail:▫ foldmethod=syntax foldlevel=99
+autocmd FileType rst set wrap linebreak nolist spell
+autocmd FileType markdown set wrap linebreak nolist spell
+autocmd BufEnter Dockerfile set tabstop=4 softtabstop=4 shiftwidth=4 expandtab nolinebreak
+
+" Force python3 syntax
+let g:syntastic_python_python_exec='python3'
+
+" vim-go
+let g:go_autodetect_gopath=1
+let g:go_auto_type_info=1  " Auto :GoInfo on symbol under cursor
+"let g:go_auto_sameids=1    " Auto :GoSameIds on symbol under cursor
+let g:go_updatetime=300    " Delay auto update (ms)
 
 " NERDTree
-let NERDTreeIgnore = ['\.pyc$']
+let NERDTreeIgnore = ['\.pyc$']  " Don't show .pyc files
 
 " Search/substitute
 
@@ -17,12 +42,13 @@ set hlsearch
 set showmatch       " Briefly show the matching bracket when one is typed
 
 " Searches use standard regexes
-nnoremap / /\v
-vnoremap / /\v
+"nnoremap / /\v
+"vnoremap / /\v
 
 " Appearance
 
-set cursorline                      " Highlight current line
+"set cursorline                      " Highlight current line
+"set lazyredraw                      " Makes cursorline bearable
 set nonumber                        " Turn off line numbering
 set guioptions+=c                   " Use console instead of popup dialogs
 set guioptions-=T                   " Turn off toolbar
@@ -52,5 +78,6 @@ noremap <Right> zl
 noremap <Up>    
 noremap <Down>  
 
-" Starts a Python program
-map  i#!/usr/bin/env python<CR><CR>import sys<CR>import os<CR><CR>def main(argv):<CR>pass<CR><ESC>oif __name__ == '__main__':<CR>try:<CR>main(sys.argv)<CR><BS>except KeyboardInterrupt:<CR>pass<ESC>
+" F6 redraws the screen. I should figure out which Go-related plugin is
+" leaving garbage on my screen.
+map <F6> :redraw!<cr>
