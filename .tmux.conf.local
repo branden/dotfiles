@@ -1,0 +1,22 @@
+# Add your local tmux config here
+bind-key _ select-layout even-horizontal
+bind-key - select-layout even-vertical
+
+# Start window numbering at 0
+# Looks like this doesn't override the command in tmux.conf?
+set -g base-index 0
+
+# Mouse config for tmux 2.1
+set -g mouse on
+#set -g mouse-utf8 on
+#bind -n WheelUpPane   select-pane -t= \; copy-mode -e \; send-keys -M
+#bind -n WheelDownPane select-pane -t= \;                 send-keys -M
+bind -n WheelUpPane   select-pane -t= \;                 send-keys -M
+bind -n WheelDownPane select-pane -t= \;                 send-keys -M
+
+# Highlight border on pane with focus
+#set -g pane-active-border-fg colour10
+set -g pane-active-border-style fg=colour10
+
+# Prevent processes from renaming the window
+set-option -g allow-rename off
